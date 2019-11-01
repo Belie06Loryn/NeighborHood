@@ -1,0 +1,73 @@
+{%extends 'all-files/base.html'%} 
+{% block content %}
+<style>
+@media only screen and (max-width:800px) {
+  /* For tablets: */
+  .main {
+    width: 80%;
+    padding: 0;
+  }
+  .right {
+    width: 100%;
+  }
+}
+@media only screen and (max-width:500px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
+.hr{ 
+    display: block;
+    margin-left:200px;
+    margin-right: 200px;
+    border-style: inset;
+    border-width: 1px;
+  } 
+  footer {
+    /* position: fixed; */
+    background-color:transparent;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color:rgb(8, 8, 8);
+    text-align: center;
+    font-size: 10px;
+  }
+</style>
+<div class="container" ><br>
+    {% if searchs %}
+      <h2> {{ searchs|length }}  {{backend}}</h2>
+    {% else %}
+      <h2> {{backend}}</h2>
+    {% endif %}<br><br>
+    <div class="row">
+      {% if searchs %}
+      {% for cate in searchs %}
+      <div class="rating-page above">
+        <img id="overla" src="{{cate.image.url}}" style="height: 300px; width: 60%; margin-left:270px">
+    </div>
+    <br><br><br>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-6" style="margin-left:10px;">
+                <h2>{{ cate.sitename }}</h2><br>
+            
+                <h2 class="project-details-heading">Project Details</h2>
+                <p>{{ cate.description }}</p><br>
+            
+                <h2 class="project-details-heading">Visit The Site</h2>
+                <a href="{{project.url}}"><button class="btn btn-primary">Visit Site</button></a><br>
+        </div>
+        <div class="col-md-5"></div>
+  {% endfor %}
+  {% endif %}
+</div></div></div></div><br><br><br><br><br>
+<div>
+    <footer>
+        <hr class="hr">
+        <p>@2019 by ____ProDevloper.Proudly Created</p>
+    </footer>
+</div>
+{% endblock %} 
