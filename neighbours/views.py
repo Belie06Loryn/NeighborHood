@@ -3,13 +3,13 @@ from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # from .forms import ProfileForm,FotoForm,VotingForm
-# from .models import Profile,Foto,Voting
+from .models import Hood
 
 
 def page(request):
-    # images=Foto.objects.all()
+    hoods=Hood.objects.all()
     # profile=Profile.objects.all()'images':images,'profile':profile
-    return render(request,'all-files/index.html',{})
+    return render(request,'all-files/index.html',{"hoods":hoods})
 
 # def submit(request):
 #     return render(request,'all-files/submit.html',{})       

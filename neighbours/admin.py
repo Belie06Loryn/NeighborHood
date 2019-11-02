@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Hood,Calls
 
-# Register your models here.
+class HoodAdmin(admin.ModelAdmin):
+    admin.site.register(Hood)
+    admin.site.register(Calls)
