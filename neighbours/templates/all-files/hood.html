@@ -1,0 +1,63 @@
+{% extends 'all-files/base.html' %}
+{% load bootstrap4 %}
+ {% block content %}
+ <!DOCTYPE html>
+ <html>
+ 
+ <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+<style>
+.hr{ 
+  display: block;
+  margin-left:200px;
+  margin-right: 200px;
+  border-style: inset;
+  border-width: 1px;
+} 
+footer{
+  background-color:transparent;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color:rgb(8, 8, 8);
+  text-align: center;
+  font-size: 10px;
+}
+</style>
+<body style="background-color: rgb(253, 250, 243);">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"> <div></div>
+        <img src="{{hoo.image.url}}" style="height: 300px; width: 60%; margin-left:270px">
+        <br><p><strong>{{hoo.location}}</strong></p>
+        <p>{{hoo.name}}</p>
+        <p><strong>{{hoo.bio}}</strong></p>
+        <p><strong>{{hoo.country}}</strong></p>
+      </div><br><br>
+      <div class="col-md-2"></div></div>
+<div class="container">
+  <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+          {% for pik in images %}
+              <img src="{{pik.image.url}}" style="width:200px;height:200px;border-style:solid" alt="Image"><br> <br>
+      {% endfor %}
+    </div>
+    
+    <div class="col-md-2"></div>
+  
+</div>
+  </div>
+
+<br><br>
+<div>
+    <footer>
+        <hr class="hr">
+        <p>@2019 by ____ProDevloper.Proudly Created</p>
+    </footer>
+</div>  
+</body>
+</html>
+{% endblock %}

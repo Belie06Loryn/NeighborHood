@@ -7,9 +7,13 @@ from .models import Hood
 
 
 def page(request):
-    hoods=Hood.objects.all()
-    # profile=Profile.objects.all()'images':images,'profile':profile
+    hoods = Hood.objects.all()
     return render(request,'all-files/index.html',{"hoods":hoods})
+
+@login_required(login_url='/accounts/login/')
+def Hoo(request,id):
+    hoo = Hood.objects.filter(id=id)
+    return render(request, 'all-files/hood.html',{"hoo":hoo})  
 
 # def submit(request):
 #     return render(request,'all-files/submit.html',{})       
@@ -37,18 +41,18 @@ def page(request):
 #    return render(request, 'all-files/post.html', {"images":images,"profile":profile})
 
 # @login_required(login_url='/accounts/login/')
-# def project(request):
+# def hoo(request):
 #     current_user = request.user
 #     if request.method == 'POST':
 #         form = FotoForm(request.POST,request.FILES)
 #         if form.is_valid():
-#             project = form.save(commit=False)
-#             project.user= current_user
-#             project.save()
+#             hoo = form.save(commit=False)
+#             hoo.user= current_user
+#             hoo.save()
 #         return redirect('profile_display')
 #     else:
 #         form =FotoForm()
-#     return render(request, 'all-files/project.html', {"form": form})       
+#     return render(request, 'all-files/hoo.html', {"form": form})       
 
 # def search_results(request):
 #     if 'searchs' in request.GET and request.GET['searchs']:
