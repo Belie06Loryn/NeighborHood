@@ -38,3 +38,31 @@ class Hood(models.Model):
     def searchs(cls,search):
         location = cls.objects.filter(location__icontains=search)
         return location
+
+class Business(models.Model):
+    image = models.ImageField(upload_to = 'photos/',null=True)
+    name = models.CharField(max_length =6000)
+    use = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    email = models.EmailField()
+    hoods = models.ForeignKey(Hood, null=True) 
+
+    def save_busi(self):
+        self.save()
+
+    def dele_busi(self):
+        self.delete() 
+
+    @classmethod
+    def busi_by_id(cls,id):
+        found = cls.objects.filter(id = id)
+        return found
+
+    @classmethod
+    def update_busi(cls,id):
+        imaje = cls.objects.filter(id=id).update(id=id)
+        return imaje          
+ 
+    @classmethod
+    def searchs(cls,search):
+        name = cls.objects.filter(name__icontains=search)
+        return name

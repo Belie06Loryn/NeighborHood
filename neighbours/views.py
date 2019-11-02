@@ -2,8 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-# from .forms import ProfileForm,FotoForm,VotingForm
-from .models import Hood
+from .forms import BusinessForm
+from .models import Hood,Calls,Business
 
 
 def page(request):
@@ -11,12 +11,20 @@ def page(request):
     return render(request,'all-files/index.html',{"hoods":hoods})
 
 @login_required(login_url='/accounts/login/')
-def Hoo(request,id):
-    hoo = Hood.objects.filter(id=id)
-    return render(request, 'all-files/hood.html',{"hoo":hoo})  
-
-# def submit(request):
-#     return render(request,'all-files/submit.html',{})       
+def Hoo(request,pk):
+    hoo = Hood.objects.get(id=pk)
+    current_user = request.user
+    busi=Business.objects.filter(hoods=id)
+    if request.method == 'POST':
+        form = BusinessForm(request.POST,request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.user= current_user
+            business.save()
+        return redirect('hood')
+    else:
+        form =BusinessForm()
+    return render(request, 'all-files/hood.html',{"hoo":hoo,"form": form,"busi":busi})  
 
 # @login_required(login_url='/accounts/login/')
 # def profile(request):
@@ -38,21 +46,7 @@ def Hoo(request,id):
 #    profile=Profile.objects.filter(username_id=current_user).first()
 #    print(profile)
 #    images=Foto.objects.filter(profile_id=current_user)
-#    return render(request, 'all-files/post.html', {"images":images,"profile":profile})
-
-# @login_required(login_url='/accounts/login/')
-# def hoo(request):
-#     current_user = request.user
-#     if request.method == 'POST':
-#         form = FotoForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             hoo = form.save(commit=False)
-#             hoo.user= current_user
-#             hoo.save()
-#         return redirect('profile_display')
-#     else:
-#         form =FotoForm()
-#     return render(request, 'all-files/hoo.html', {"form": form})       
+#    return render(request, 'all-files/post.html', {"images":images,"profile":profile})     
 
 # def search_results(request):
 #     if 'searchs' in request.GET and request.GET['searchs']:
