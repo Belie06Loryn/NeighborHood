@@ -35,7 +35,7 @@ footer{
         <img src="{{hoo.image.url}}" style="height: 300px; width: 60%; margin-left:7px">
         <br><p style="margin-left:7px"><strong>{{hoo.location}}</strong></p>
         <p style="margin-left:7px">{{hoo.name}}</p>
-        <button class="btn btn-btn-success" id="ima"></button>
+        <a href="{% url 'Call' %}" class="btn btn-warning" style="margin-left:30px">Emergency Calls</a>
       </div><br><br>
       <div class="col-md-1"></div>
       <div class="col-md-5">
@@ -49,7 +49,7 @@ footer{
          {% block scripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         {% bootstrap_javascript %} {% endblock %} 
-      </div></div>
+      </div></div><br><br><br><br><br><br><h1 style="text-align: center;">Business in Hood</h1><br>
 <div class="container">
   <div class="row">
       <div class="col-md-2"></div>

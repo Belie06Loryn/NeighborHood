@@ -22,7 +22,7 @@ class Hood(models.Model):
     calls = models.ForeignKey(Calls, null=True) 
 
     def __str__(self):
-        return self.name
+        return self.location
 
     def save_hood(self):
         self.save()

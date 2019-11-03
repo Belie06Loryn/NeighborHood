@@ -14,7 +14,7 @@ def page(request):
 def Hoo(request,pk):
     hoo = Hood.objects.get(id=pk)
     current_user = request.user
-    # busi=Business.objects.filter(),"busi":busi
+    busi=Business.objects.filter()
     if request.method == 'POST':
         form = BusinessForm(request.POST,request.FILES)
         if form.is_valid():
@@ -24,8 +24,13 @@ def Hoo(request,pk):
         return redirect('Hoo',pk)
     else:
         form =BusinessForm()
-    return render(request, 'all-files/hood.html',{"hoo":hoo,"form": form})  
+    return render(request, 'all-files/hood.html',{"hoo":hoo,"form": form,"busi":busi})  
     
+@login_required(login_url='/accounts/login/')
+def Call(request):
+    call = Calls.objects.all()
+    return render(request, 'all-files/busi.html',{"call":call})  
+        
 
 # def search_results(request):
 #     if 'searchs' in request.GET and request.GET['searchs']:

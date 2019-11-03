@@ -1,6 +1,5 @@
 {% extends 'all-files/base.html' %}
 {% load bootstrap4 %}
-{% load staticfiles %}
 {% block content %}
 <!DOCTYPE html>
  <html>
@@ -8,13 +7,6 @@
  <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-   <title>New Post</title>
-   {{form.media}}
- 
- {% block styles %} {% bootstrap_css %}
-   <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet"> {% endblock %}
- 
  </head>
 <style>
 .hr{ 
@@ -37,20 +29,14 @@ footer{
 </style>
 <body>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <form  action="{% url 'Hoo' hoo.id %}" method="post" id="orde" enctype="multipart/form-data" style="height: 300px; width: 50%; margin-left:10px">
-          {%csrf_token%}
-          
-          {% bootstrap_form form%}
-          <input type="submit" class="btn btn-success btn-lg" value="Submit">
-        </form>
-      
-         {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        {% bootstrap_javascript %} {% endblock %} 
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <h1 style="text-align: center;">Emergency Calls</h1><br>
+      {% for call in call %}
+      <p style="margin-left:7px; text-align: center;"><strong>{{call.namecall}}</strong>  :  {{call.fone}}</p>
+       {% endfor %}
       </div>
-      <div class="col-md-3"></div>
+      <div class="col-md-4"></div>
       </div>
 <br><br>
 <div>
