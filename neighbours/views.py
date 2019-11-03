@@ -14,25 +14,18 @@ def page(request):
 def Hoo(request,pk):
     hoo = Hood.objects.get(id=pk)
     current_user = request.user
-    busi=Business.objects.filter(id=hoods)
+    # busi=Business.objects.filter(),"busi":busi
     if request.method == 'POST':
         form = BusinessForm(request.POST,request.FILES)
         if form.is_valid():
             business = form.save(commit=False)
             business.user= current_user
             business.save()
-        return redirect('hood')
+        return redirect('Hoo',pk)
     else:
         form =BusinessForm()
-    return render(request, 'all-files/hood.html',{"hoo":hoo,"form": form,"busi":busi})  
-
-# @login_required(login_url='/accounts/login/')
-# def profile_display(request):
-#    current_user = request.user
-#    profile=Profile.objects.filter(username_id=current_user).first()
-#    print(profile)
-#    images=Foto.objects.filter(profile_id=current_user)
-#    return render(request, 'all-files/post.html', {"images":images,"profile":profile})     
+    return render(request, 'all-files/hood.html',{"hoo":hoo,"form": form})  
+    
 
 # def search_results(request):
 #     if 'searchs' in request.GET and request.GET['searchs']:

@@ -59,8 +59,8 @@ class Business(models.Model):
         self.delete() 
 
     @classmethod
-    def busi_by_id(cls,id):
-        found = cls.objects.filter(id = id)
+    def busi_by_id(cls,hoods):
+        found = cls.objects.filter(hoods = hoods)
         return found
 
     @classmethod
