@@ -14,7 +14,7 @@ def page(request):
 def Hoo(request,pk):
     hoo = Hood.objects.get(id=pk)
     current_user = request.user
-    busi=Business.objects.filter(hoods=id)
+    busi=Business.objects.filter(id=hoods)
     if request.method == 'POST':
         form = BusinessForm(request.POST,request.FILES)
         if form.is_valid():
@@ -25,20 +25,6 @@ def Hoo(request,pk):
     else:
         form =BusinessForm()
     return render(request, 'all-files/hood.html',{"hoo":hoo,"form": form,"busi":busi})  
-
-# @login_required(login_url='/accounts/login/')
-# def profile(request):
-#     current_user = request.user
-#     if request.method == 'POST':
-#         form = ProfileForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             profile = form.save(commit=False)
-#             profile.user= current_user
-#             profile.save()
-#         return redirect('profile_display')
-#     else:
-#         form =ProfileForm()
-#     return render(request, 'all-files/profile.html', {"form": form}) 
 
 # @login_required(login_url='/accounts/login/')
 # def profile_display(request):

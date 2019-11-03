@@ -5,6 +5,9 @@ class Calls(models.Model):
     namecall = models.CharField(max_length =3000)
     fone = models.CharField(max_length =3000)
 
+    def __str__(self):
+        return self.namecall
+
     def save_call(self):
         self.save()
 
@@ -17,6 +20,9 @@ class Hood(models.Model):
     location = models.CharField(max_length =6000)
     count = models.CharField(max_length =6000)
     calls = models.ForeignKey(Calls, null=True) 
+
+    def __str__(self):
+        return self.name
 
     def save_hood(self):
         self.save()
@@ -64,5 +70,5 @@ class Business(models.Model):
  
     @classmethod
     def searchs(cls,search):
-        name = cls.objects.filter(name__icontains=search)
+        name = cls.objects.filter(hoods__icontains=search)
         return name
